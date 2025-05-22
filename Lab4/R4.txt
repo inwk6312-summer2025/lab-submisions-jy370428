@@ -1,0 +1,27 @@
+enable
+configure terminal
+no ip domain lookup
+hostname 49R04
+line con 0
+logging synchronous
+exit
+interface loopback 0
+ip address 150.4.4.4 255.255.255.255
+no shutdown
+interface GigabitEthernet1
+no shutdown
+interface GigabitEthernet1.14
+encapsulation dot1Q 14
+ip address 155.1.14.4 255.255.255.0
+no shutdown
+router rip
+version 2
+network 155.1.14.4
+network 150.4.4.4
+no auto-summary
+exit
+line vty 0 4
+password inwk
+login
+transport input all
+exit
